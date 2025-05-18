@@ -1,18 +1,20 @@
-const { expect } = require('@playwright/test');
+const { expect } = require("@playwright/test");
 
 export class CustomerLoginPage {
   constructor(page) {
-    this.page = page; 
-    this.customerDropDown = page.getByTestId('userSelect');
-    this.loginButton = page.getByRole('button', { name: 'Login' });
+    this.page = page;
+    this.customerDropDown = page.getByTestId("userSelect");
+    this.loginButton = page.getByRole("button", { name: "Login" });
   }
 
   async open() {
-    await this.page.goto('/angularJs-protractor/BankingProject/#/customer');
+    await this.page.goto("/angularJs-protractor/BankingProject/#/customer");
   }
 
   async waitForOpened() {
-    await this.page.waitForURL('/angularJs-protractor/BankingProject/#/customer');
+    await this.page.waitForURL(
+      "/angularJs-protractor/BankingProject/#/customer"
+    );
   }
 
   async selectCustomer(customerName) {

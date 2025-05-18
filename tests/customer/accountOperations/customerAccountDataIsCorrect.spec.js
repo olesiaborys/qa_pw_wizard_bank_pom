@@ -1,11 +1,11 @@
-import { test } from '@playwright/test';
-import { CustomerLoginPage } from '../../../src/pages/customer/CustomerLoginPage';
-import { CustomerAccountPage } from '../../../src/pages/customer/CustomerAccountPage';
+import { test } from "@playwright/test";
+import { CustomerLoginPage } from "../../../src/pages/customer/CustomerLoginPage";
+import { CustomerAccountPage } from "../../../src/pages/customer/CustomerAccountPage";
 
-test('Assert customer has correct bank data', async ({ page }) => {
-/* 
+test("Assert customer has correct bank data", async ({ page }) => {
+  /* 
 Test:
-1. Open Wizard bank link
+1. Open Customer Login page
 2. Select Hermione Granger
 3. Click [Login]
 4. Assert Account Number in Dropdown next to the Hermoine Granger name
@@ -14,15 +14,17 @@ Test:
 6. Assert Currency text
 */
 
-const loginPage = new CustomerLoginPage(page); 
-const accountPage = new CustomerAccountPage(page); 
+  const customerLoginPage = new CustomerLoginPage(page);
+  const customerAccountPage = new CustomerAccountPage(page);
 
-await loginPage.open();
-await loginPage.selectCustomer('Hermoine Granger');
-await loginPage.clickLoginButton();
+  await customerLoginPage.open();
+  await customerLoginPage.selectCustomer("Hermoine Granger");
+  await customerLoginPage.clickLoginButton();
 
-await accountPage.assertAccountIdInDropDownHasValue('number:1001');
-await accountPage.assertAccountLineContainsText('Account Number : 1001');
-await accountPage.assertAccountLineContainsText('Balance : 5096');
-await accountPage.assertAccountLineContainsText('Currency : Dollar');
+  await customerAccountPage.assertAccountIdInDropDownHasValue("number:1001");
+  await customerAccountPage.assertAccountLineContainsText(
+    "Account Number : 1001"
+  );
+  await customerAccountPage.assertAccountLineContainsText("Balance : 5096");
+  await customerAccountPage.assertAccountLineContainsText("Currency : Dollar");
 });

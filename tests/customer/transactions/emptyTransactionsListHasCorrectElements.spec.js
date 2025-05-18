@@ -1,12 +1,14 @@
-import { test } from '@playwright/test';
-import { CustomerLoginPage } from '../../../src/pages/customer/CustomerLoginPage';
-import { CustomerAccountPage } from '../../../src/pages/customer/CustomerAccountPage';
-import { TransactionsPage } from '../../../src/pages/customer/TransactionsPage';
+import { test } from "@playwright/test";
+import { CustomerLoginPage } from "../../../src/pages/customer/CustomerLoginPage";
+import { CustomerAccountPage } from "../../../src/pages/customer/CustomerAccountPage";
+import { TransactionsPage } from "../../../src/pages/customer/TransactionsPage";
 
-test('Assert the empty transactions list has correct values', async ({ page }) => {
-/* 
+test("Assert the empty transactions list has correct values", async ({
+  page,
+}) => {
+  /* 
 Test:
-1. Open Wizard bank login for Customer 
+1. Open Customer Login page
 2. Select "Albus Dumbledore"
 3. Click [Login]
 4. Click [Transactions]
@@ -15,18 +17,18 @@ Test:
 7. Assert first column header conatins text "Transaction Type"
 8. Assert the first row in table is hidden
 */
-const customerLoginPage = new CustomerLoginPage(page); 
-const accountPage = new CustomerAccountPage(page);
-const transactionsPage = new TransactionsPage(page); 
+  const customerLoginPage = new CustomerLoginPage(page);
+  const customerAccountPage = new CustomerAccountPage(page);
+  const transactionsPage = new TransactionsPage(page);
 
-await customerLoginPage.open();
-await customerLoginPage.selectCustomer('Albus Dumbledore');
-await customerLoginPage.clickLoginButton();
+  await customerLoginPage.open();
+  await customerLoginPage.selectCustomer("Albus Dumbledore");
+  await customerLoginPage.clickLoginButton();
 
-await accountPage.clickTransactionsButton();
+  await customerAccountPage.clickTransactionsButton();
 
-await transactionsPage.assertHeaderFirstCellContainsText('Date-Time');
-await transactionsPage.assertHeaderSecondCellContainsText('Amount');
-await transactionsPage.assertHeaderThirdCellContainsText('Transaction Type');
-await transactionsPage.assertFirstRowIsHidden();
+  await transactionsPage.assertHeaderFirstCellContainsText("Date-Time");
+  await transactionsPage.assertHeaderSecondCellContainsText("Amount");
+  await transactionsPage.assertHeaderThirdCellContainsText("Transaction Type");
+  await transactionsPage.assertFirstRowIsHidden();
 });
